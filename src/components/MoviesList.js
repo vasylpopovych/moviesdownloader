@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import useSimulateAsync from "../utils/useSimulateAsync";
+import React, { useState, useEffect } from "react";
+import SimulateAsync from "../utils/useSimulateAsync";
 import { payload } from "../mock/index";
 import MovieItem from "./MovieItem";
 import "../styles/styles.css";
 
-const MoviesList = () => { 
+const MoviesList = () => {
   const [movies, getMovies] = useState(null);
+
   const loadMovies = () => {
-    useSimulateAsync(payload).then(
+    SimulateAsync(payload).then(
       (result) => {
         getMovies(result);
         console.log("Movies downloaded successfully");
@@ -18,6 +19,7 @@ const MoviesList = () => {
       }
     );
   };
+
   if (movies) {
     return (
       <div className="moviesList">
