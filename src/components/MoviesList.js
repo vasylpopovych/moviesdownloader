@@ -5,25 +5,34 @@ import MovieItem from "./MovieItem";
 import "../styles/styles.css";
 
 const MoviesList = () => {
-  const [movies, getMovies] = useState(null);
+  const [movies, getMovies] = useState(false);
+  const [isShowMovies, setIsShowMovies] = useState(false);
 
-  const loadMovies = () => {
-    SimulateAsync(payload).then(
-      (result) => {
-        getMovies(result);
-        console.log("Movies downloaded successfully");
-      },
-      (err) => {
-        getMovies(err);
-        console.log("Load data error");
-      }
-    );
+  useEffect(() => {
+    if (typeof movies !== "object") {
+      SimulateAsync(payload).then(
+        (result) => {
+          getMovies(result);
+          console.log(`Movies downloaded successfully `);
+        },
+        (err) => {
+          getMovies(Math.random());
+          console.log(`Load data error`);
+        }
+      );
+    }
+  }, [movies]);
+
+  const showMovies = () => {
+    if (typeof movies === "object") {
+      setIsShowMovies(true);
+    }
   };
 
-  if (movies) {
+  if (isShowMovies) {
     return (
       <div className="moviesList">
-        <button onClick={loadMovies}>Load Movies</button>
+        <button onClick={showMovies}>Load Movies</button>
         <div className="movieContainer">
           <MovieItem
             title={movies.titles[0]}
@@ -52,17 +61,10 @@ const MoviesList = () => {
         </div>
       </div>
     );
-  } else if (movies === undefined) {
-    return (
-      <div className="moviesList">
-        <button onClick={loadMovies}>Load Movies</button>
-        <div style={{ marginTop: "10px" }}>Upload error! Try again...</div>
-      </div>
-    );
   } else {
     return (
       <div className="moviesList">
-        <button onClick={loadMovies}>Load Movies</button>
+        <button onClick={showMovies}>Load Movies</button>
         <div style={{ marginTop: "10px" }}>Movies not yet uploaded</div>
       </div>
     );
