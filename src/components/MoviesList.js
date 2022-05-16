@@ -16,6 +16,7 @@ const MoviesList = () => {
           console.log(`Movies downloaded successfully `);
         },
         (err) => {
+          // adding random number to 'movies' for re-call load data
           getMovies(Math.random());
           console.log(`Load data error`);
         }
@@ -32,8 +33,10 @@ const MoviesList = () => {
   if (isShowMovies) {
     return (
       <div className="moviesList">
-        <button onClick={showMovies}>Load Movies</button>
+        {/* <button className="button" onClick={showMovies}>Load Movies</button> */}
+        <div className="button" onClick={showMovies}>Load Movies</div>
         <div className="movieContainer">
+          
           <MovieItem
             title={movies.titles[0]}
             year={movies.releases_years[0]}
@@ -64,7 +67,8 @@ const MoviesList = () => {
   } else {
     return (
       <div className="moviesList">
-        <button onClick={showMovies}>Load Movies</button>
+        {/* <button onClick={showMovies}>Load Movies</button> */}
+        <div className="button" onClick={showMovies}>Load Movies</div>
         <div style={{ marginTop: "10px" }}>Movies not yet uploaded</div>
       </div>
     );

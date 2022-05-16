@@ -7,11 +7,17 @@
   margin-top: 15px;
   padding: 10px;
   border: 1px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
 }
 .movieContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  
 }
 
 .movieItemWrapper {
@@ -31,4 +37,16 @@
 }
 .field::first-line {
   font-weight: bold;
+}
+
+.button {
+  background-color: aqua;
+  border-radius: 5px;
+  border: 1px solid rgb(95, 91, 91);
+  height: 30px;
+  width: 100px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
