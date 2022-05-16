@@ -23,6 +23,7 @@
 .movieItemWrapper {
   border: 1px solid lightblue;
   margin: 10px;
+  background-color: rgb(223, 241, 248);
 }
 
 .titleMovie {

@@ -33,7 +33,6 @@ const MoviesList = () => {
   if (isShowMovies) {
     return (
       <div className="moviesList">
-        {/* <button className="button" onClick={showMovies}>Load Movies</button> */}
         <div className="button" onClick={showMovies}>Load Movies</div>
         <div className="movieContainer">
           
@@ -61,13 +60,14 @@ const MoviesList = () => {
             budget={movies.budget[3]}
             box_office={movies.box_office[3]}
           />
+
+        <MovieItem/>
         </div>
       </div>
     );
   } else {
     return (
       <div className="moviesList">
-        {/* <button onClick={showMovies}>Load Movies</button> */}
         <div className="button" onClick={showMovies}>Load Movies</div>
         <div style={{ marginTop: "10px" }}>Movies not yet uploaded</div>
       </div>
