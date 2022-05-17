@@ -8,12 +8,23 @@ const MoviesList = () => {
   const [movies, getMovies] = useState(false);
   const [isShowMovies, setIsShowMovies] = useState(false);
 
+  const restructureMovieData = (data) => {
+    let restructuredData = [];
+    for(let i = 0; i < Object.values(data)[0].length; i++){
+      restructuredData.push({})
+      for(let value of Object.entries(data)) {
+        restructuredData[i][value[0]] = value[1][i]
+      }
+    }
+        return restructuredData
+  }
+
   useEffect(() => {
     if (typeof movies !== "object") {
       SimulateAsync(payload).then(
         (result) => {
-          getMovies(result);
-          console.log(`Movies downloaded successfully `);
+          getMovies(restructureMovieData(result));
+          console.log(`Movies downloaded successfully`);
         },
         (err) => {
           // adding random number to 'movies' for re-call load data
@@ -25,9 +36,7 @@ const MoviesList = () => {
   }, [movies]);
 
   const showMovies = () => {
-    if (typeof movies === "object") {
-      setIsShowMovies(true);
-    }
+    if (typeof movies === "object") setIsShowMovies(true);
   };
 
   if (isShowMovies) {
@@ -35,33 +44,7 @@ const MoviesList = () => {
       <div className="moviesList">
         <div className="button" onClick={showMovies}>Load Movies</div>
         <div className="movieContainer">
-          
-          <MovieItem
-            title={movies.titles[0]}
-            year={movies.releases_years[0]}
-            budget={movies.budget[0]}
-            box_office={movies.box_office[0]}
-          />
-          <MovieItem
-            title={movies.titles[1]}
-            year={movies.releases_years[1]}
-            budget={movies.budget[1]}
-            box_office={movies.box_office[1]}
-          />
-          <MovieItem
-            title={movies.titles[2]}
-            year={movies.releases_years[2]}
-            budget={movies.budget[2]}
-            box_office={movies.box_office[2]}
-          />
-          <MovieItem
-            title={movies.titles[3]}
-            year={movies.releases_years[3]}
-            budget={movies.budget[3]}
-            box_office={movies.box_office[3]}
-          />
-
-        <MovieItem/>
+          {movies.map((movie) => <MovieItem movieData={movie} key={Date.now() + Math.random()}/>)}
         </div>
       </div>
     );
@@ -76,3 +59,4 @@ const MoviesList = () => {
 };
 
 export default MoviesList;
+

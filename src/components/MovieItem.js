@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../styles/styles.css";
 
-const MovieItem = (movies) => {
+const MovieItem = (movieData) => {
   const countNetProfit = () => {
-    const netProfit = movies.box_office - movies.budget;
+    const netProfit = movieData.movieData.box_office - movieData.movieData.budget;
     if (netProfit >= 0) {
       styleColor = "green";
       return "+ " + netProfit;
@@ -18,20 +18,20 @@ const MovieItem = (movies) => {
 
   return (
     <div className="movieItemWrapper">
-      <div className="titleMovie">{movies.title}</div>
+      <div className="titleMovie">{movieData.movieData.titles}</div>
 
       <div className="field">
         Release year:
-        <div>{movies.year}</div>
+        <div>{movieData.movieData.releases_years}</div>
       </div>
       <div className="field">
         Budget:
-        <div>{movies.budget + " $"}</div>
+        <div>{movieData.movieData.budget + " $"}</div>
       </div>
       <div className="field">
         {" "}
         Box office:
-        <div>{movies.box_office + " $"}</div>
+        <div>{movieData.movieData.box_office + " $"}</div>
       </div>
       <div className="field">
         Net profit:
