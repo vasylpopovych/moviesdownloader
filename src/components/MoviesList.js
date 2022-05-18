@@ -36,10 +36,14 @@ const MoviesList = () => {
   }, [movies]);
 
   const showMovies = () => {
-    if (typeof movies === "object") setIsShowMovies(true);
+    if (typeof movies === "object") {
+      setIsShowMovies('Movies Downloaded') 
+    } else if (typeof movies === "number") {
+      setIsShowMovies('Downloading Error')
+    }
   };
 
-  if (isShowMovies) {
+  if (isShowMovies === 'Movies Downloaded') {
     return (
       <div className="moviesList">
         <div className="button" onClick={showMovies}>Load Movies</div>
@@ -48,11 +52,17 @@ const MoviesList = () => {
         </div>
       </div>
     );
+  } else if(isShowMovies === 'Downloading Error') {
+    return (
+      <div className="moviesList">
+        <div className="button" onClick={showMovies}>Load Movies</div>
+        <div style={{ marginTop: "10px" }}>Downloading Error! Please, try again ...</div>
+      </div>
+    );
   } else {
     return (
       <div className="moviesList">
         <div className="button" onClick={showMovies}>Load Movies</div>
-        <div style={{ marginTop: "10px" }}>Movies not yet uploaded</div>
       </div>
     );
   }
