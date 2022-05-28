@@ -1,2 +1,7 @@
-# moviesdownloader
-I used here library React 
+# Movies Downloader
+**Tech Stack:**
+
+- React
+- React Hooks
+- JS(ES6)
+- SCSS
