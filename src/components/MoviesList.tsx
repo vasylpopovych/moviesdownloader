@@ -3,17 +3,19 @@ import SimulateAsync from "../utils/useSimulateAsync";
 import { payload } from "../mock/index";
 import MovieItem from "./MovieItem";
 import "../styles/styles.css";
+import { any, string } from "prop-types";
 
 const MoviesList = () => {
   const [movies, getMovies] = useState(false);
   const [isShowMovies, setIsShowMovies] = useState(false);
+  
 
-  const restructureMovieData = (data) => {
+  const restructureMovieData = (data:{ [key: string]: any }) => {
     let restructuredData = [];
     for(let i = 0; i < Object.values(data)[0].length; i++){
       restructuredData.push({})
       for(let value of Object.entries(data)) {
-        restructuredData[i][value[0]] = value[1][i]
+        restructuredData[i][value[0]] = value[1][i];
       }
     }
         return restructuredData

@@ -1,4 +1,4 @@
-export const payload = {
+export const payload: {titles: string[], releases_years: number[], budget: number[], box_office: number[]} = {
   titles: ["Gladiator", "Jhon Wick", "Judge Dredd", "Fight Club"],
   releases_years: [2000, 2014, 2012, 2000],
   budget: [103000000, 30000000, 53000000, 27000000],

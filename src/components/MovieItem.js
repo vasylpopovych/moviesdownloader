@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../styles/styles.css";
 
 const MovieItem = (movieData) => {
+
+  //let n:number = '5';
   const countNetProfit = () => {
     const netProfit = movieData.movieData.box_office - movieData.movieData.budget;
     if (netProfit >= 0) {

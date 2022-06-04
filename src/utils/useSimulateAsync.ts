@@ -1,8 +1,7 @@
-const getRandomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomInt = (min:number, max:number):number => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const useSimulateAsync = async (data) => {
-  const delay = (ms) =>
+const useSimulateAsync = async (data:object) => {
+  const delay = (ms:number) =>
     new Promise((res, rej) =>
       setTimeout(getRandomInt(1, 5) > 2 ? res : rej, ms)
     );
